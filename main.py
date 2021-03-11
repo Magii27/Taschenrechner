@@ -1,50 +1,4 @@
-def rechnen(eingabe):
-    try:
-        if eingabe.find("w") >= 0 and eingabe.find("^") >= 2:
-            if eingabe.find("w") >= 1:
-                print("Umgerechnet: ")
-                potenz = int(eingabe[eingabe.find("^") + 1:len(eingabe)])
-                zahlvp = float(eingabe[eingabe.find("w") + 1:eingabe.find("^")])
-                zahlvw = float(eingabe[0:eingabe.find("w")])
-                eingabe = zahlvw * ((zahlvp ** potenz) ** 0.5)
-                print(eingabe)
-            else:
-                print("Umgerechnet: ")
-                potenz = int(eingabe[eingabe.find("^") + 1:len(eingabe)])
-                zahlvp = float(eingabe[eingabe.find("w") + 1:eingabe.find("^")])
-
-                eingabe = float((zahlvp ** potenz) ** 0.5)
-                print(eingabe)
-
-        elif eingabe.find("w") >= 1:
-            print("Umgerechnet: ")
-            zahlw = int(eingabe[eingabe.find("w") + 1:len(eingabe)])
-            zahlvw = int(eingabe[0:eingabe.find("w")])
-
-            eingabe = float(zahlvw * (zahlw ** 0.5))
-            print(eingabe)
-
-        elif eingabe.find("w") == 0:
-            print("Umgerechnet: ")
-            zahlw = int(eingabe[eingabe.find("w") + 1:len(eingabe)])
-
-            eingabe = float(zahlw ** 0.5)
-            print(eingabe)
-
-        elif eingabe.find("^") >= 1:
-            print("Umgerechnet: ")
-            potenz = int(eingabe[eingabe.find("^") + 1:len(eingabe)])
-            zahlvp = float(eingabe[0:eingabe.find("^")])
-
-            eingabe = zahlvp ** potenz
-            print(eingabe)
-        else:
-            eingabe = float(eingabe)
-
-    except ValueError:
-        print("Bitte nur numerische Eingaben machen!")
-    return eingabe;
-
+import formel
 
 print("Hey, was soll ich dir ausrechnen?")
 
@@ -85,7 +39,7 @@ while var_try == 0:
             print(" ")
             var_z1 = input("Erste Zahl:\n")
             try:
-                var_z1 = float(rechnen(var_z1))
+                var_z1 = float(formel.rechnen(var_z1))
             except ValueError:
                 var_try = 1
 
@@ -103,7 +57,7 @@ while var_try == 0:
 
         var_z2 = input("Zweite Zahl:\n")
         try:
-            var_z2 = float(rechnen(var_z2))
+            var_z2 = float(formel.rechnen(var_z2))
         except ValueError:
             var_try = 1
 
