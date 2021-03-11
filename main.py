@@ -1,3 +1,50 @@
+def rechnen(eingabe):
+    try:
+        if eingabe.find("w") >= 0 and eingabe.find("^") >= 2:
+            if eingabe.find("w") >= 1:
+                print("Umgerechnet: ")
+                potenz = int(eingabe[eingabe.find("^") + 1:len(eingabe)])
+                zahlvp = float(eingabe[eingabe.find("w") + 1:eingabe.find("^")])
+                zahlvw = float(eingabe[0:eingabe.find("w")])
+                eingabe = zahlvw * ((zahlvp ** potenz) ** 0.5)
+                print(eingabe)
+            else:
+                print("Umgerechnet: ")
+                potenz = int(eingabe[eingabe.find("^") + 1:len(eingabe)])
+                zahlvp = float(eingabe[eingabe.find("w") + 1:eingabe.find("^")])
+
+                eingabe = float((zahlvp ** potenz) ** 0.5)
+                print(eingabe)
+
+        elif eingabe.find("w") >= 1:
+            print("Umgerechnet: ")
+            zahlw = int(eingabe[eingabe.find("w") + 1:len(eingabe)])
+            zahlvw = int(eingabe[0:eingabe.find("w")])
+
+            eingabe = float(zahlvw * (zahlw ** 0.5))
+            print(eingabe)
+
+        elif eingabe.find("w") == 0:
+            print("Umgerechnet: ")
+            zahlw = int(eingabe[eingabe.find("w") + 1:len(eingabe)])
+
+            eingabe = float(zahlw ** 0.5)
+            print(eingabe)
+
+        elif eingabe.find("^") >= 1:
+            print("Umgerechnet: ")
+            potenz = int(eingabe[eingabe.find("^") + 1:len(eingabe)])
+            zahlvp = float(eingabe[0:eingabe.find("^")])
+
+            eingabe = zahlvp ** potenz
+            print(eingabe)
+        else:
+            eingabe = float(eingabe)
+
+    except ValueError:
+        print("Bitte nur numerische Eingaben machen!")
+    return eingabe;
+
 
 print("Hey, was soll ich dir ausrechnen?")
 
@@ -23,58 +70,24 @@ while var_try == 1:
         var_try = 1
 
 var_op = ["+", "-", "*", "/"]
-
-x = 0
 var_repeat = ""
-var_try = 0
+
 while var_try == 0:
     var_try = 1
 
     while var_try == 1:
         var_try = 0
 
-        try:
-            if var_repeat == "r":
-                print("Erste Zahl:")
-                print(var_z1)
-            else:
-                print(" ")
-                var_z1 = input("Erste Zahl:\n")
-
-                if var_z1.find("w") >= 0 and var_z1.find("^") >= 2:
-                    print("Umgerechnet: ")
-                    if var_z1.find("w") >= 1:
-                        var_posp = int(var_z1[var_z1.find("^") + 1:len(var_z1)])
-                        var_zp = float(var_z1[var_z1.find("w") + 1:var_z1.find("^")])
-                        var_zv = float(var_z1[0:var_z1.find("w")])
-                        var_z1 = var_zv * ((var_zp ** var_posp) ** 0.5)
-                        print(var_z1)
-                    else:
-                        var_posp = int(var_z1[var_z1.find("^") + 1:len(var_z1)])
-                        var_zp = float(var_z1[var_z1.find("w") + 1:var_z1.find("^")])
-
-                        var_z1 = float((var_zp ** var_posp) ** 0.5)
-                        print(var_z1)
-
-                elif var_z1.find("w") == 0:
-                    print("Umgerechnet: ")
-                    var_zw = int(var_z1[var_z1.find("w")+1:len(var_z1)])
-
-                    var_z1 = float(var_zw**0.5)
-                    print(var_z1)
-                elif var_z1.find("^") >= 1:
-                    print("Umgerechnet: ")
-                    var_posp = int(var_z1[var_z1.find("^")+1:len(var_z1)])
-                    var_zp = float(var_z1[0:var_z1.find("^")])
-
-                    var_z1 = var_zp**var_posp
-                    print(var_z1)
-                else:
-                    var_z1 = float(var_z1)
-
-        except ValueError:
-            print("Bitte nur numerische Eingaben machen!")
-            var_try = 1
+        if var_repeat == "r":
+            print("Erste Zahl:")
+            print(var_z1)
+        else:
+            print(" ")
+            var_z1 = input("Erste Zahl:\n")
+            try:
+                var_z1 = float(rechnen(var_z1))
+            except ValueError:
+                var_try = 1
 
     var_try = 1
     while var_try == 1:
@@ -87,44 +100,11 @@ while var_try == 0:
     var_try = 1
     while var_try == 1:
         var_try = 0
+
+        var_z2 = input("Zweite Zahl:\n")
         try:
-
-            var_z2 = input("Zweite Zahl:\n")
-
-            if var_z2.find("w") >= 0 or var_z2.find("^") >= 2:
-                print("Umgerechnet: ")
-                if var_z2.find("w") >= 1:
-                    var_posp = int(var_z2[var_z2.find("^") + 1:len(var_z2)])
-                    var_zp = float(var_z2[var_z2.find("w") + 1:var_z2.find("^")])
-                    var_zv = float(var_z2[0:var_z2.find("w")])
-                    var_z2 = var_zv * ((var_zp ** var_posp) ** 0.5)
-                    print(var_z2)
-                else:
-                    var_posp = int(var_z2[var_z2.find("^") + 1:len(var_z2)])
-                    var_zp = float(var_z2[var_z2.find("w") + 1:var_z2.find("^")])
-
-                    var_z2 = float((var_zp ** var_posp) ** 0.5)
-                    print(var_z2)
-
-            elif var_z2.find("w") >= 0:
-                print("Umgerechnet: ")
-                var_zw = int(var_z2[var_z2.find("w") + 1:len(var_z2)])
-
-                var_z2 = float(var_zw ** 0.5)
-                print(var_z2)
-            elif var_z2.find("^") >= 1:
-                print("Umgerechnet: ")
-                var_posp = int(var_z2[var_z2.find("^") + 1:len(var_z2)])
-                var_zp = float(var_z2[0:var_z2.find("^")])
-
-                var_z2 = var_zp ** var_posp
-                print(var_z2)
-            else:
-                var_z2 = float(var_z2)
-
+            var_z2 = float(rechnen(var_z2))
         except ValueError:
-            print("Bitte nur numerische Eingaben machen!")
-            print(" ")
             var_try = 1
 
     if var_inp == "+":
