@@ -31,7 +31,7 @@ while var_try == 1:
 
         try:
             var_z = input("Welche Zahl darf ich dir umrechnen? \n")
-            print(binär.binär(var_z))
+            binär.binär(var_z)
             var_try = 4
         except ValueError:
             var_try = 2
