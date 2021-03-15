@@ -1,30 +1,49 @@
 def binär(eingabe):
     eingabestr = str(eingabe)
     eingabeint = int(eingabe)
-    count = 0
+    counter = 0
     ausgabe = 0
+
     for x in eingabestr:
-        print(x)
+
         if x == "1" or x == "0":
-            var_prüf = 0
-            count += 1
+            prüfung = 0
+            counter += 1
         else:
-            var_prüf = 1
+            prüfung = 1
             break
-    count = 1
-    if var_prüf == 0:
+
+    if prüfung == 0:
+        versuch = 1
+        while versuch == 1:
+            abfrage = input("Ist das deine Dezimalzahl (d) oder eine Binärzahl (b)? \n")
+
+            if abfrage == "b" or input == "B":
+                versuch = 0
+            elif abfrage == "d" or input == "D":
+                prüfung = 1
+                versuch = 0
+            else:
+                print("Sorry ich hab dich nicht verstanden")
+                versuch = 1
+    
+    if prüfung == 0:
+        counter = 1
         for x in eingabestr:
-            var_zw = int(x) * (2 ** (len(eingabestr) - count))
-            ausgabe = int(ausgabe + var_zw)
-            count = count + 1
+            zahlzw = int(x) * (2 ** (len(eingabestr) - counter))
+            ausgabe = int(ausgabe + zahlzw)
+            counter += 1
+        print("Umgerechnet in dezimal: ")
     else:
-        while eingabeint == 0:
-            eingabeint
+        x = eingabeint
+        while x >= 1:
+            zahlzw = x % 2
+            x = x // 2
+            zahlzw = str(zahlzw)
+            ausgabe = str(ausgabe) + zahlzw
 
-        print("moin")
-        ausgabe = 2
+        ausgabe = ausgabe[::-1]
+        ausgabe = ausgabe[0:len(ausgabe)-1]
+        print("Umgerechnet in binär: ")
+
     return ausgabe;
-
-
-var = input()
-print(binär(var))
